@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário!</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .mensagem {
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .nome {
+            font-size: 40px;
+            font-weight: bold;
+            color: yellow;
+            text-shadow: 0 0 10px yellow;
+            animation: pulse 1.5s infinite alternate;
+        }
+        img {
+            width: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            animation: zoomIn 2s ease-in-out;
+        }
+        .baloes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+        .balao {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 70px;
+            background-color: red;
+            border-radius: 50%;
+            animation: subir 5s linear infinite;
+        }
+        @keyframes subir {
+            from { bottom: -100px; }
+            to { bottom: 100vh; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="baloes" id="baloes"></div>
+    <div class="container">
+        <h1 class="mensagem">Feliz Aniversário, meu querido!</h1>
+        <h2 class="nome">Clifton Venancio</h2>
+        <img src="imagens/img1.jpg" alt="Foto do aniversariante">
+    </div>
+
+    <script>
+        function criarBalao() {
+            const balao = document.createElement("div");
+            balao.classList.add("balao");
+            balao.style.left = Math.random() * 100 + "vw";
+            balao.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            balao.style.backgroundColor = ["red", "blue", "green", "yellow", "purple"][Math.floor(Math.random() * 5)];
+            document.getElementById("baloes").appendChild(balao);
+            setTimeout(() => { balao.remove(); }, 5000);
+        }
+        setInterval(criarBalao, 500);
+    </script>
+</body>
+</html>
